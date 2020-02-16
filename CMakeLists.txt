@@ -4,6 +4,12 @@ project(dxc-cmake)
 # ===============================================
 # add submodule
 
+if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+    # DXC has disabled UUID emulation on clang for some reason
+    # we have to force the define on
+    add_definitions(-D__EMULATE_UUID=1)
+endif()
+
 set(ENABLE_SPIRV_CODEGEN ON CACHE BOOL "" FORCE)
 set(CLANG_ENABLE_ARCMT OFF CACHE BOOL "" FORCE)
 set(CLANG_ENABLE_STATIC_ANALYZER OFF CACHE BOOL "" FORCE)
