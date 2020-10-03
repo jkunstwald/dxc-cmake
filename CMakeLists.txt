@@ -7,6 +7,7 @@ project(dxc-cmake)
 if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     # DXC has disabled UUID emulation on clang for some reason
     # we have to force the define on
+    message(STATUS "clang detected, forcing __EMULATE_UUID")
     add_definitions(-D__EMULATE_UUID=1)
 endif()
 
